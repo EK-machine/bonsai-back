@@ -1,1 +1,1 @@
-export const BONSAI_NOT_FOUND = 'Бонсаи по вашему запросу не найдены';
+export const BONSAI_NOT_FOUND = 'There is no bonsai you are looking for';

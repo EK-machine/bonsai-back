@@ -10,8 +10,12 @@ export class BonsaiService {
     @InjectRepository(Bonsai) private bonsaiRepository: Repository<Bonsai>,
   ) {}
 
-  async getAll() {
+  async getAllBonsai() {
     return this.bonsaiRepository.find();
+  }
+
+  async getBonsaiById(id: number) {
+    return this.bonsaiRepository.findOne({ where: { id } });
   }
 
   async createBonsai(bonsaiDetails: CreateBonsaiParams) {

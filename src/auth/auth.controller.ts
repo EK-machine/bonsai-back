@@ -9,12 +9,13 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { Response } from 'express';
-import { AtPublic } from '../common/decorators/atPublic.decorator.js';
-import { GetCurrenUser } from '../common/decorators/get-current-user.decorator.js';
-import { GetRefreshToken } from '../common/decorators/get-rt.decorator.js';
-import { RtPublic } from '../common/decorators/rtPublic.decorator.js';
-import { AtGuard } from '../common/guards/at.guard.js';
-import { RtGuard } from '../common/guards/rt.guard.js';
+import {
+  AtPublic,
+  GetCurrenUser,
+  GetRefreshToken,
+  RtPublic,
+} from '../common/decorators/index.js';
+import { AtGuard, RtGuard } from '../common/guards/index.js';
 import { AuthService } from './auth.service.js';
 import {
   REFRESH_TOKEN,

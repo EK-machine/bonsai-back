@@ -11,14 +11,11 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { AtPublic } from '../common/decorators/atPublic.decorator.js';
-import { RtPublic } from '../common/decorators/rtPublic.decorator.js';
-import { AtGuard } from '../common/guards/at.guard.js';
-import { RtGuard } from '../common/guards/rt.guard.js';
+import { AtPublic, RtPublic } from '../common/decorators/index.js';
+import { AtGuard, RtGuard } from '../common/guards/index.js';
 import { BonsaiService } from './bonsai.service.js';
 import { BONSAI_NOT_FOUND } from './consts/bonsai.constants.js';
-import { CreateBonsaiDto } from './dto/CreateBonsai.dto.js';
-import { EditBonsaiDto } from './dto/EditBonsai.dto.js';
+import { CreateBonsaiDto, EditBonsaiDto } from './dto/index.js';
 
 @Controller('bonsai')
 @UseGuards(AtGuard, RtGuard)

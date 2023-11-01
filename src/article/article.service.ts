@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Article } from '../typeorm/entities/article.entity.js';
 import { ARTICLE_NOT_FOUND } from './consts/article.constants.js';
-import { CreateArticleDto } from './dto/CreateArticle.dto.js';
+import { CreateArticleDto, EditArticleDto } from './dto/index.js';
 
 @Injectable()
 export class ArticleService {
@@ -35,5 +35,11 @@ export class ArticleService {
   async deleteById(id: number) {
     const articleToDel = await this.getArticleById(id);
     return await this.articleRepository.remove(articleToDel);
+  }
+
+  async editById(id: number, editBody: EditArticleDto) {
+    let articleToEdit = await this.getArticleById(id);
+    articleToEdit = { ...articleToEdit, ...editBody };
+    return this.articleRepository.save(articleToEdit);
   }
 }

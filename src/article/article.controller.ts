@@ -7,13 +7,14 @@ import {
   HttpStatus,
   NotFoundException,
   Param,
+  Patch,
   Post,
   UseGuards,
 } from '@nestjs/common';
 import { AtPublic, RtPublic } from '../common/decorators/index.js';
 import { AtGuard, RtGuard } from '../common/guards/index.js';
 import { ArticleService } from './article.service.js';
-import { CreateArticleDto } from './dto/CreateArticle.dto.js';
+import { CreateArticleDto, EditArticleDto } from './dto/index.js';
 
 @Controller('article')
 @UseGuards(RtGuard, AtGuard)
@@ -41,18 +42,23 @@ export class ArticleController {
   }
 
   @Post('create')
-  @AtPublic()
-  @RtPublic()
   @HttpCode(HttpStatus.CREATED)
   async createArticle(@Body() createArticleDto: CreateArticleDto) {
     return await this.articleService.createArticle(createArticleDto);
   }
 
   @Delete('delete/:id')
-  @AtPublic()
-  @RtPublic()
   @HttpCode(HttpStatus.OK)
   async deleteById(@Param('id') id: string) {
     return await this.articleService.deleteById(+id);
+  }
+
+  @Patch('edit/:id')
+  @HttpCode(HttpStatus.OK)
+  async editById(
+    @Param('id') id: string,
+    @Body() editArticleDto: EditArticleDto,
+  ) {
+    return await this.articleService.editById(+id, editArticleDto);
   }
 }

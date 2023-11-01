@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
@@ -40,8 +41,18 @@ export class ArticleController {
   }
 
   @Post('create')
+  @AtPublic()
+  @RtPublic()
   @HttpCode(HttpStatus.CREATED)
   async createArticle(@Body() createArticleDto: CreateArticleDto) {
     return await this.articleService.createArticle(createArticleDto);
+  }
+
+  @Delete('delete/:id')
+  @AtPublic()
+  @RtPublic()
+  @HttpCode(HttpStatus.OK)
+  async deleteById(@Param('id') id: string) {
+    return await this.articleService.deleteById(+id);
   }
 }

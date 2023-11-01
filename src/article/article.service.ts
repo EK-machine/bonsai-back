@@ -31,4 +31,9 @@ export class ArticleService {
     });
     return this.articleRepository.save(newArticle);
   }
+
+  async deleteById(id: number) {
+    const articleToDel = await this.getArticleById(id);
+    return await this.articleRepository.remove(articleToDel);
+  }
 }

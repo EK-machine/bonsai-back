@@ -7,7 +7,14 @@ import { ArticleModule } from './article/article.module';
 import { AuthModule } from './auth/auth.module';
 import { BonsaiController } from './bonsai/bonsai.controller';
 import { BonsaiModule } from './bonsai/bonsai.module';
-import { Article, Bonsai, RT, User } from './typeorm/entities/index.js';
+import { ServiceModule } from './service/service.module';
+import {
+  Article,
+  Bonsai,
+  RT,
+  Service,
+  User,
+} from './typeorm/entities/index.js';
 
 @Module({
   imports: [
@@ -21,12 +28,13 @@ import { Article, Bonsai, RT, User } from './typeorm/entities/index.js';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [User, Bonsai, RT, Article],
+      entities: [User, Bonsai, RT, Article, Service],
       synchronize: true,
     }),
     BonsaiModule,
     AuthModule,
     ArticleModule,
+    ServiceModule,
   ],
   controllers: [AppController, BonsaiController],
   providers: [AppService],

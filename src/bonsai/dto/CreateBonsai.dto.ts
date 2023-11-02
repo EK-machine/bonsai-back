@@ -1,9 +1,17 @@
-import { IsBoolean, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsBoolean,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 export class CreateBonsaiDto {
+  @IsNotEmpty()
   @IsString()
   name: string;
 
+  @IsNotEmpty()
   @IsNumber()
   price: number;
 
@@ -23,12 +31,14 @@ export class CreateBonsaiDto {
   @IsString()
   img_path_3: string | null;
 
+  @IsNotEmpty()
   @IsString()
   category: string;
 
   @IsString()
   level: string;
 
+  @IsNotEmpty()
   @IsBoolean()
   in_stock: boolean;
 }

@@ -1,6 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { DecimalTransformer } from '../transformers/decimal.transformer.js';
 
-@Entity('article')
+@Entity('service')
 export class Service {
   @PrimaryGeneratedColumn()
   id: number;
@@ -8,7 +9,13 @@ export class Service {
   @Column()
   name: string;
 
-  @Column()
+  @Column({
+    name: 'price',
+    type: 'decimal',
+    precision: 5,
+    scale: 2,
+    transformer: new DecimalTransformer(),
+  })
   price: number;
 
   @Column({ nullable: true })

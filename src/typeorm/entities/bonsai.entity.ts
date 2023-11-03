@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { DecimalTransformer } from '../transformers/decimal.transformer.js';
 
 @Entity({ name: 'bonsai' })
 export class Bonsai {
@@ -8,7 +9,13 @@ export class Bonsai {
   @Column({ default: 'бонсай' })
   name: string;
 
-  @Column({ default: 0.0 })
+  @Column({
+    name: 'price',
+    type: 'decimal',
+    precision: 5,
+    scale: 2,
+    transformer: new DecimalTransformer(),
+  })
   price: number;
 
   @Column({ nullable: true })

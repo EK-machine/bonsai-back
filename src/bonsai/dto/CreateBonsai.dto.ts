@@ -4,6 +4,8 @@ import {
   IsNumber,
   IsOptional,
   IsString,
+  Max,
+  Min,
 } from 'class-validator';
 
 export class CreateBonsaiDto {
@@ -12,7 +14,9 @@ export class CreateBonsaiDto {
   name: string;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsNumber({ maxDecimalPlaces: 2 })
+  @Max(999.99)
+  @Min(0.01)
   price: number;
 
   @IsOptional()

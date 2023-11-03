@@ -1,4 +1,11 @@
-import { IsBoolean, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsBoolean,
+  IsNumber,
+  IsOptional,
+  IsString,
+  Max,
+  Min,
+} from 'class-validator';
 
 export class EditBonsaiDto {
   @IsOptional()
@@ -6,7 +13,9 @@ export class EditBonsaiDto {
   name: string;
 
   @IsOptional()
-  @IsNumber()
+  @IsNumber({ maxDecimalPlaces: 2 })
+  @Max(999.99)
+  @Min(0.01)
   price: number;
 
   @IsOptional()

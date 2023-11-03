@@ -2,9 +2,8 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Bonsai } from '../typeorm/entities/index.js';
-import { CreateBonsaiParams } from '../utils/types.js';
 import { BONSAI_NOT_FOUND } from './consts/bonsai.constants.js';
-import { EditBonsaiDto } from './dto/EditBonsai.dto.js';
+import { CreateBonsaiDto, EditBonsaiDto } from './dto/index.js';
 
 @Injectable()
 export class BonsaiService {
@@ -26,7 +25,7 @@ export class BonsaiService {
     }
   }
 
-  async createBonsai(bonsaiDetails: CreateBonsaiParams): Promise<Bonsai> {
+  async createBonsai(bonsaiDetails: CreateBonsaiDto): Promise<Bonsai> {
     const newBonsai = this.bonsaiRepository.create({ ...bonsaiDetails });
     return this.bonsaiRepository.save(newBonsai);
   }

@@ -7,11 +7,13 @@ import { ArticleModule } from './article/article.module';
 import { AuthModule } from './auth/auth.module';
 import { BonsaiController } from './bonsai/bonsai.controller';
 import { BonsaiModule } from './bonsai/bonsai.module';
+import { InstrumentsModule } from './instrument/instrument.module';
 import { PotModule } from './pot/pot.module';
 import { ServiceModule } from './service/service.module';
 import {
   Article,
   Bonsai,
+  Instrument,
   Pot,
   RT,
   Service,
@@ -30,7 +32,7 @@ import {
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [User, Bonsai, RT, Article, Service, Pot],
+      entities: [User, Bonsai, RT, Article, Service, Pot, Instrument],
       synchronize: true,
     }),
     BonsaiModule,
@@ -38,6 +40,7 @@ import {
     ArticleModule,
     ServiceModule,
     PotModule,
+    InstrumentsModule,
   ],
   controllers: [AppController, BonsaiController],
   providers: [AppService],

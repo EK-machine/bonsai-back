@@ -43,24 +43,18 @@ export class PotController {
   }
 
   @Post('create')
-  @AtPublic() // to del
-  @RtPublic() // to del
   @HttpCode(HttpStatus.CREATED)
   async createPot(@Body() createPotDto: CreatePotDto) {
     return await this.potService.createPot(createPotDto);
   }
 
   @Delete('delete/:id')
-  @AtPublic() // to del
-  @RtPublic() // to del
   @HttpCode(HttpStatus.OK)
   async deleteById(@Param('id') id: string) {
     return await this.potService.deleteById(+id);
   }
 
   @Patch('edit/:id')
-  @AtPublic() // to del
-  @RtPublic() // to del
   @HttpCode(HttpStatus.OK)
   async editById(@Param('id') id: string, @Body() editPotDto: EditPotDto) {
     return await this.potService.editById(+id, editPotDto);

@@ -9,18 +9,21 @@ import { BonsaiController } from './bonsai/bonsai.controller';
 import { BonsaiModule } from './bonsai/bonsai.module';
 import { InstrumentsModule } from './instrument/instrument.module';
 import { PotModule } from './pot/pot.module';
+import { RelatedController } from './related/related.controller';
+import { RelatedModule } from './related/related.module';
 import { ServiceModule } from './service/service.module';
+import { SoilModule } from './soil/soil.module';
 import {
   Article,
   Bonsai,
   Instrument,
   Pot,
   RT,
+  Related,
   Service,
   Soil,
   User,
 } from './typeorm/entities/index.js';
-import { SoilModule } from './soil/soil.module';
 
 @Module({
   imports: [
@@ -34,7 +37,17 @@ import { SoilModule } from './soil/soil.module';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [User, Bonsai, RT, Article, Service, Pot, Instrument, Soil],
+      entities: [
+        User,
+        Bonsai,
+        RT,
+        Article,
+        Service,
+        Pot,
+        Instrument,
+        Soil,
+        Related,
+      ],
       synchronize: true,
     }),
     BonsaiModule,
@@ -44,8 +57,9 @@ import { SoilModule } from './soil/soil.module';
     PotModule,
     InstrumentsModule,
     SoilModule,
+    RelatedModule,
   ],
-  controllers: [AppController, BonsaiController],
+  controllers: [AppController, BonsaiController, RelatedController],
   providers: [AppService],
 })
 export class AppModule {}

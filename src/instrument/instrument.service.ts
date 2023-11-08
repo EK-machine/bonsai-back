@@ -29,10 +29,10 @@ export class InstrumentService {
   async createInstrument(
     createInstrument: CreateInstrumentDto,
   ): Promise<Instrument> {
-    const newService = this.instrumentRepository.create({
+    const newInstrument = this.instrumentRepository.create({
       ...createInstrument,
     });
-    return this.instrumentRepository.save(newService);
+    return this.instrumentRepository.save(newInstrument);
   }
 
   async deleteById(id: number): Promise<Instrument> {

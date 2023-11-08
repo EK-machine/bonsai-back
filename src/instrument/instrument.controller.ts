@@ -27,11 +27,11 @@ export class InstrumentController {
   @Get()
   @HttpCode(HttpStatus.OK)
   async getAllInstruments() {
-    const allServices = await this.instrumentService.getAllInstruments();
-    if (!allServices) {
+    const allInstruments = await this.instrumentService.getAllInstruments();
+    if (!allInstruments) {
       throw new NotFoundException(INSTRUMENT_NOT_FOUND);
     }
-    return allServices;
+    return allInstruments;
   }
 
   @AtPublic()

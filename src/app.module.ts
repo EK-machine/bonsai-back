@@ -17,8 +17,10 @@ import {
   Pot,
   RT,
   Service,
+  Soil,
   User,
 } from './typeorm/entities/index.js';
+import { SoilModule } from './soil/soil.module';
 
 @Module({
   imports: [
@@ -32,7 +34,7 @@ import {
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [User, Bonsai, RT, Article, Service, Pot, Instrument],
+      entities: [User, Bonsai, RT, Article, Service, Pot, Instrument, Soil],
       synchronize: true,
     }),
     BonsaiModule,
@@ -41,6 +43,7 @@ import {
     ServiceModule,
     PotModule,
     InstrumentsModule,
+    SoilModule,
   ],
   controllers: [AppController, BonsaiController],
   providers: [AppService],

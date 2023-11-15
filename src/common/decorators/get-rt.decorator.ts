@@ -1,6 +1,6 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 import { Request } from 'express';
-import { REFRESH_TOKEN } from '../../auth/consts/auth.constants.js';
+import { REFRESH_TOKEN } from '../consts/common.consts.js';
 
 export const GetRefreshToken = createParamDecorator(
   (_data: string, context: ExecutionContext) => {

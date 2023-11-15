@@ -2,8 +2,7 @@ import { ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
-import { REFRESH_TOKEN } from '../../auth/consts/auth.constants.js';
-import { isRtPublic } from '../decorators/consts/decorators.consts.js';
+import { DECORATOR_CONSTS, REFRESH_TOKEN } from '../consts/common.consts.js';
 
 @Injectable()
 export class RtGuard extends AuthGuard('jwt-refresh') {
@@ -12,10 +11,10 @@ export class RtGuard extends AuthGuard('jwt-refresh') {
   }
 
   canActivate(context: ExecutionContext) {
-    const isPublicWithoutRt = this.reflector.getAllAndOverride(isRtPublic, [
-      context.getHandler(),
-      context.getClass(),
-    ]);
+    const isPublicWithoutRt = this.reflector.getAllAndOverride(
+      DECORATOR_CONSTS.isRtPublic,
+      [context.getHandler(), context.getClass()],
+    );
     if (isPublicWithoutRt) {
       return true;
     }

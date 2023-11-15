@@ -2,7 +2,7 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator';
-import { POT_SHAPES } from '../consts/pot.constants.js';
+import { POT_SHAPES } from '../../common/consts/common.consts.js';
 
 @ValidatorConstraint({ name: 'ShapeValidation' })
 export class ShapeValidation implements ValidatorConstraintInterface {

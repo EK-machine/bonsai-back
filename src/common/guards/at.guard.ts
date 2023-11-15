@@ -1,7 +1,7 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
-import { isAtPublic } from '../decorators/consts/decorators.consts.js';
+import { DECORATOR_CONSTS } from '../consts/common.consts.js';
 
 @Injectable()
 export class AtGuard extends AuthGuard('jwt') {
@@ -10,10 +10,10 @@ export class AtGuard extends AuthGuard('jwt') {
   }
 
   canActivate(context: ExecutionContext) {
-    const isPublicWithoutAt = this.reflector.getAllAndOverride(isAtPublic, [
-      context.getHandler(),
-      context.getClass(),
-    ]);
+    const isPublicWithoutAt = this.reflector.getAllAndOverride(
+      DECORATOR_CONSTS.isAtPublic,
+      [context.getHandler(), context.getClass()],
+    );
     if (isPublicWithoutAt) {
       return true;
     }

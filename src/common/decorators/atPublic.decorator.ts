@@ -1,4 +1,4 @@
 import { SetMetadata } from '@nestjs/common';
-import { isAtPublic } from './consts/decorators.consts.js';
+import { DECORATOR_CONSTS } from '../consts/common.consts.js';
 
-export const AtPublic = () => SetMetadata(isAtPublic, true);
+export const AtPublic = () => SetMetadata(DECORATOR_CONSTS.isAtPublic, true);

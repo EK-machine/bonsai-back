@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { EXCEPTION_MSGS } from '../common/consts/common.consts.js';
 import { Pot } from '../typeorm/entities/index.js';
-import { POT_NOT_FOUND } from './consts/pot.constants.js';
 import { CreatePotDto, EditPotDto } from './dto/index.js';
 
 @Injectable()
@@ -21,7 +21,7 @@ export class PotService {
         where: { id },
       });
     } catch (err) {
-      throw new NotFoundException(POT_NOT_FOUND);
+      throw new NotFoundException(EXCEPTION_MSGS.POT_NOT_FOUND);
     }
   }
 

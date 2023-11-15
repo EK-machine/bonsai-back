@@ -10,6 +10,10 @@ import {
 } from '@nestjs/common';
 import { Response } from 'express';
 import {
+  EXCEPTION_MSGS,
+  REFRESH_TOKEN,
+} from '../common/consts/common.consts.js';
+import {
   AtPublic,
   GetCurrenUser,
   GetRefreshToken,
@@ -17,10 +21,6 @@ import {
 } from '../common/decorators/index.js';
 import { AtGuard, RtGuard } from '../common/guards/index.js';
 import { AuthService } from './auth.service.js';
-import {
-  REFRESH_TOKEN,
-  SOMETHING_WENT_WRONG,
-} from './consts/auth.constants.js';
 import { AuthDto } from './dto/Auth.dto.js';
 
 @Controller('auth')
@@ -70,7 +70,7 @@ export class AuthController {
   ) {
     const data = await this.authService.verifyRT(refreshToken);
     if (!data) {
-      throw new UnauthorizedException(SOMETHING_WENT_WRONG);
+      throw new UnauthorizedException(EXCEPTION_MSGS.SOMETHING_WENT_WRONG);
     }
     const tokens = await this.authService.refresh(userEmail, refreshToken);
     response.cookie(REFRESH_TOKEN, tokens.refresh_token, { httpOnly: true });

@@ -11,9 +11,9 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { EXCEPTION_MSGS } from '../common/consts/common.consts.js';
 import { AtPublic, RtPublic } from '../common/decorators/index.js';
 import { AtGuard, RtGuard } from '../common/guards/index.js';
-import { SOIL_NOT_FOUND } from './consts/soil.constants.js';
 import { CreateSoilDto, EditSoilDto } from './dto/index.js';
 import { SoilService } from './soil.service.js';
 
@@ -29,7 +29,7 @@ export class SoilController {
   async getAllSoils() {
     const allSoils = await this.soilService.getAllSoils();
     if (!allSoils) {
-      throw new NotFoundException(SOIL_NOT_FOUND);
+      throw new NotFoundException(EXCEPTION_MSGS.SOIL_NOT_FOUND);
     }
     return allSoils;
   }

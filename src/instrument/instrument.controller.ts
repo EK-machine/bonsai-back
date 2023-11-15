@@ -11,9 +11,9 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { EXCEPTION_MSGS } from '../common/consts/common.consts.js';
 import { AtPublic, RtPublic } from '../common/decorators/index.js';
 import { AtGuard, RtGuard } from '../common/guards/index.js';
-import { INSTRUMENT_NOT_FOUND } from './consts/instrument.constants.js';
 import { CreateInstrumentDto, EditInstrumentDto } from './dto/index.js';
 import { InstrumentService } from './instrument.service.js';
 
@@ -29,7 +29,7 @@ export class InstrumentController {
   async getAllInstruments() {
     const allInstruments = await this.instrumentService.getAllInstruments();
     if (!allInstruments) {
-      throw new NotFoundException(INSTRUMENT_NOT_FOUND);
+      throw new NotFoundException(EXCEPTION_MSGS.INSTRUMENT_NOT_FOUND);
     }
     return allInstruments;
   }

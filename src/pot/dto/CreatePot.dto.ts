@@ -8,42 +8,44 @@ import {
   Min,
   Validate,
 } from 'class-validator';
-import { POT_SHAPE_IS_NOT_CORRECT } from '../consts/pot.constants.js';
+import { VALIDATION_MSGS } from '../../common/consts/common.consts.js';
 import { ShapeValidation } from '../custom-validators/shape-validator.custom.js';
 
 export class CreatePotDto {
-  @IsNotEmpty()
-  @IsString()
+  @IsNotEmpty({ message: VALIDATION_MSGS.POT_NAME_NOT_EMPTY })
+  @IsString({ message: VALIDATION_MSGS.POT_NAME_IS_STRING })
   name: string;
 
-  @IsNotEmpty()
-  @IsString()
+  @IsNotEmpty({ message: VALIDATION_MSGS.POT_SIZE_NOT_EMPTY })
+  @IsString({ message: VALIDATION_MSGS.POT_SIZE_IS_STRING })
   size: string;
 
-  @IsNotEmpty()
-  @IsString()
-  @Validate(ShapeValidation, { message: POT_SHAPE_IS_NOT_CORRECT })
+  @IsNotEmpty({ message: VALIDATION_MSGS.POT_SHAPE_NOT_EMPTY })
+  @IsString({ message: VALIDATION_MSGS.POT_SHAPE_IS_STRING })
+  @Validate(ShapeValidation, {
+    message: VALIDATION_MSGS.POT_SHAPE_IS_NOT_CORRECT,
+  })
   shape: string;
 
-  @IsNotEmpty()
-  @IsString()
+  @IsNotEmpty({ message: VALIDATION_MSGS.POT_COLOR_NOT_EMPTY })
+  @IsString({ message: VALIDATION_MSGS.POT_COLOR_IS_STRING })
   color: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: VALIDATION_MSGS.PRICE_NOT_EMPTY })
   @IsNumber({ maxDecimalPlaces: 2 })
-  @Max(999.99)
-  @Min(0.01)
+  @Max(999.99, { message: VALIDATION_MSGS.MAX_PRICE })
+  @Min(0.01, { message: VALIDATION_MSGS.MIN_PRICE })
   price: number;
 
   @IsOptional()
-  @IsString()
+  @IsString({ message: VALIDATION_MSGS.POT_DESCR_IS_STRING })
   descr: string | null;
 
   @IsNotEmpty()
-  @IsString()
+  @IsString({ message: VALIDATION_MSGS.IMG_IS_STRING })
   img_path: string;
 
-  @IsNotEmpty()
-  @IsBoolean()
+  @IsNotEmpty({ message: VALIDATION_MSGS.STOCK_NOT_EMPTY })
+  @IsBoolean({ message: VALIDATION_MSGS.STOCK_IS_BOOL })
   in_stock: boolean;
 }

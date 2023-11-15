@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { EXCEPTION_MSGS } from '../common/consts/common.consts.js';
 import { Service } from '../typeorm/entities/index.js';
-import { SERVICE_NOT_FOUND } from './consts/service.constants.js';
 import { CreateServiceDto, EditServiceDto } from './dto/index.js';
 
 @Injectable()
@@ -21,7 +21,7 @@ export class ServiceService {
         where: { id },
       });
     } catch (err) {
-      throw new NotFoundException(SERVICE_NOT_FOUND);
+      throw new NotFoundException(EXCEPTION_MSGS.SERVICE_NOT_FOUND);
     }
   }
 

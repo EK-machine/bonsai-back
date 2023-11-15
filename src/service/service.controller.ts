@@ -11,9 +11,9 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { EXCEPTION_MSGS } from '../common/consts/common.consts.js';
 import { AtPublic, RtPublic } from '../common/decorators/index.js';
 import { AtGuard, RtGuard } from '../common/guards/index.js';
-import { SERVICE_NOT_FOUND } from './consts/service.constants.js';
 import { CreateServiceDto, EditServiceDto } from './dto/index.js';
 import { ServiceService } from './service.service.js';
 
@@ -29,7 +29,7 @@ export class ServiceController {
   async getAllServices() {
     const allServices = await this.serviceService.getAllServices();
     if (!allServices) {
-      throw new NotFoundException(SERVICE_NOT_FOUND);
+      throw new NotFoundException(EXCEPTION_MSGS.SERVICE_NOT_FOUND);
     }
     return allServices;
   }

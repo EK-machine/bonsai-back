@@ -1,21 +1,22 @@
 import { IsNumber, IsOptional, IsString, Max, Min } from 'class-validator';
+import { VALIDATION_MSGS } from '../../common/consts/common.consts.js';
 
 export class EditServiceDto {
   @IsOptional()
-  @IsString()
+  @IsString({ message: VALIDATION_MSGS.SERVICE_NAME_IS_STRING })
   name: string;
 
   @IsOptional()
   @IsNumber({ maxDecimalPlaces: 2 })
-  @Max(999.99)
-  @Min(0.01)
+  @Max(999.99, { message: VALIDATION_MSGS.MAX_PRICE })
+  @Min(0.01, { message: VALIDATION_MSGS.MIN_PRICE })
   price: number;
 
   @IsOptional()
-  @IsString()
+  @IsString({ message: VALIDATION_MSGS.SERVICE_DESCR_IS_STRING })
   descr: string | null;
 
   @IsOptional()
-  @IsString()
+  @IsString({ message: VALIDATION_MSGS.IMG_IS_STRING })
   img_path: string;
 }

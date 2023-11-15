@@ -14,7 +14,10 @@ export class EditBonsaiDto {
   name: string;
 
   @IsOptional()
-  @IsNumber({ maxDecimalPlaces: 2 })
+  @IsNumber(
+    { maxDecimalPlaces: 2 },
+    { message: VALIDATION_MSGS.PRICE_CONSTRAINTS },
+  )
   @Max(999.99, { message: VALIDATION_MSGS.MAX_PRICE })
   @Min(0.01, { message: VALIDATION_MSGS.MIN_PRICE })
   price: number;

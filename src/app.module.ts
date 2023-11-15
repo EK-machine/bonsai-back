@@ -9,8 +9,6 @@ import { BonsaiController } from './bonsai/bonsai.controller';
 import { BonsaiModule } from './bonsai/bonsai.module';
 import { InstrumentsModule } from './instrument/instrument.module';
 import { PotModule } from './pot/pot.module';
-import { RelatedController } from './related/related.controller';
-import { RelatedModule } from './related/related.module';
 import { ServiceModule } from './service/service.module';
 import { SoilModule } from './soil/soil.module';
 import {
@@ -19,7 +17,6 @@ import {
   Instrument,
   Pot,
   RT,
-  Related,
   Service,
   Soil,
   User,
@@ -37,17 +34,7 @@ import {
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [
-        User,
-        Bonsai,
-        RT,
-        Article,
-        Service,
-        Pot,
-        Instrument,
-        Soil,
-        Related,
-      ],
+      entities: [User, Bonsai, RT, Article, Service, Pot, Instrument, Soil],
       synchronize: true,
     }),
     BonsaiModule,
@@ -57,9 +44,8 @@ import {
     PotModule,
     InstrumentsModule,
     SoilModule,
-    RelatedModule,
   ],
-  controllers: [AppController, BonsaiController, RelatedController],
+  controllers: [AppController, BonsaiController],
   providers: [AppService],
 })
 export class AppModule {}

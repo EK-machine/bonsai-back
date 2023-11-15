@@ -60,8 +60,10 @@ export const EXCEPTION_MSGS = {
 export const REFRESH_TOKEN = 'refreshToken';
 export const SUCCESS = 'Успешно';
 
-export const isAtPublic = 'isAtPublic';
-export const isRtPublic = 'isRtPublic';
+export const DECORATOR_CONSTS = {
+  isAtPublic: 'isAtPublic',
+  isRtPublic: 'isRtPublic',
+};
 
 export const POT_SHAPES = [
   'круг',
@@ -71,3 +73,8 @@ export const POT_SHAPES = [
   'треугольник',
   'бесформенный',
 ];
+
+export const ENV_CONSTS = {
+  R_SECRET: 'R_SECRET',
+  A_SECRET: 'A_SECRET',
+};

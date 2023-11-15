@@ -3,9 +3,12 @@ import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { Request } from 'express';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { R_SECRET } from '../../common/envconsts/env.consts.js';
+import {
+  ENV_CONSTS,
+  EXCEPTION_MSGS,
+  REFRESH_TOKEN,
+} from '../../common/consts/common.consts.js';
 import { JwtPayload } from '../../utils/types.js';
-import { REFRESH_TOKEN, RT_MALFORMED } from '../consts/auth.constants.js';
 
 @Injectable()
 export class RefreshTokenStrategy extends PassportStrategy(
@@ -18,7 +21,7 @@ export class RefreshTokenStrategy extends PassportStrategy(
         RefreshTokenStrategy.extractJwt,
         ExtractJwt.fromAuthHeaderAsBearerToken(),
       ]),
-      secretOrKey: configService.get(R_SECRET),
+      secretOrKey: configService.get(ENV_CONSTS.R_SECRET),
       passReqToCallback: true,
     });
   }
@@ -37,7 +40,7 @@ export class RefreshTokenStrategy extends PassportStrategy(
   async validate(req: Request, payload: JwtPayload) {
     const refreshToken = req.cookies[REFRESH_TOKEN];
     if (!refreshToken) {
-      throw new ForbiddenException(RT_MALFORMED);
+      throw new ForbiddenException(EXCEPTION_MSGS.RT_MALFORMED);
     }
     return payload;
   }

@@ -11,10 +11,10 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { EXCEPTION_MSGS } from '../common/consts/common.consts.js';
 import { AtPublic, RtPublic } from '../common/decorators/index.js';
 import { AtGuard, RtGuard } from '../common/guards/index.js';
 import { ArticleService } from './article.service.js';
-import { ARTICLE_NOT_FOUND } from './consts/article.constants.js';
 import { CreateArticleDto, EditArticleDto } from './dto/index.js';
 
 @Controller('article')
@@ -29,7 +29,7 @@ export class ArticleController {
   async getAllArticles() {
     const allArticles = await this.articleService.getAllArticles();
     if (!allArticles) {
-      throw new NotFoundException(ARTICLE_NOT_FOUND);
+      throw new NotFoundException(EXCEPTION_MSGS.ARTICLE_NOT_FOUND);
     }
     return allArticles;
   }

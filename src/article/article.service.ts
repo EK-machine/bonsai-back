@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { EXCEPTION_MSGS } from '../common/consts/common.consts.js';
 import { Article } from '../typeorm/entities/article.entity.js';
-import { ARTICLE_NOT_FOUND } from './consts/article.constants.js';
 import { CreateArticleDto, EditArticleDto } from './dto/index.js';
 
 @Injectable()
@@ -21,7 +21,7 @@ export class ArticleService {
         where: { id },
       });
     } catch (err) {
-      throw new NotFoundException(ARTICLE_NOT_FOUND);
+      throw new NotFoundException(EXCEPTION_MSGS.ARTICLE_NOT_FOUND);
     }
   }
 

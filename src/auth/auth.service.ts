@@ -4,15 +4,10 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
+import { EXCEPTION_MSGS, SUCCESS } from '../common/consts/common.consts.js';
 import { A_SECRET, R_SECRET } from '../common/envconsts/env.consts.js';
 import { RT, User } from '../typeorm/entities/index.js';
 import { JwtPayload, Tokens } from '../utils/types.js';
-import {
-  INVALID_CREDENTIALS,
-  SOMETHING_WENT_WRONG,
-  SUCCESS,
-  USER_EXISTS,
-} from './consts/auth.constants.js';
 import { AuthDto } from './dto/Auth.dto.js';
 
 @Injectable()
@@ -30,7 +25,7 @@ export class AuthService {
     });
 
     if (oldUser) {
-      throw new ForbiddenException(USER_EXISTS);
+      throw new ForbiddenException(EXCEPTION_MSGS.USER_EXISTS);
     }
 
     const hashedPassword = await this.hashDada(dto.password);
@@ -42,7 +37,7 @@ export class AuthService {
     const userIsSaved = newUser && Object.entries(newUser).length > 0;
 
     if (!userIsSaved) {
-      throw new ForbiddenException(SOMETHING_WENT_WRONG);
+      throw new ForbiddenException(EXCEPTION_MSGS.SOMETHING_WENT_WRONG);
     }
 
     return { message: SUCCESS };
@@ -53,11 +48,11 @@ export class AuthService {
       where: { email: dto.email },
     });
     if (!user) {
-      throw new ForbiddenException(INVALID_CREDENTIALS);
+      throw new ForbiddenException(EXCEPTION_MSGS.INVALID_CREDENTIALS);
     }
     const passwordMatches = await bcrypt.compare(dto.password, user.password);
     if (!passwordMatches) {
-      throw new ForbiddenException(INVALID_CREDENTIALS);
+      throw new ForbiddenException(EXCEPTION_MSGS.INVALID_CREDENTIALS);
     }
     const tokens = await this.getTokens(user.email);
     return tokens;
@@ -68,7 +63,7 @@ export class AuthService {
       where: { email },
     });
     if (!oldRt) {
-      throw new ForbiddenException(SOMETHING_WENT_WRONG);
+      throw new ForbiddenException(EXCEPTION_MSGS.SOMETHING_WENT_WRONG);
     }
     await this.rtRepository.delete({ email });
   }
@@ -78,11 +73,11 @@ export class AuthService {
       where: { email },
     });
     if (!oldUser || !oldUser.rt) {
-      throw new ForbiddenException(SOMETHING_WENT_WRONG);
+      throw new ForbiddenException(EXCEPTION_MSGS.SOMETHING_WENT_WRONG);
     }
     const rtMatches = await bcrypt.compare(refreshToken, oldUser.rt);
     if (!rtMatches) {
-      throw new ForbiddenException(SOMETHING_WENT_WRONG);
+      throw new ForbiddenException(EXCEPTION_MSGS.SOMETHING_WENT_WRONG);
     }
     const tokens = await this.getTokens(oldUser.email);
     return tokens;

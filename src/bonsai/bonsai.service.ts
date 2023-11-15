@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { EXCEPTION_MSGS } from '../common/consts/common.consts.js';
 import { Bonsai } from '../typeorm/entities/index.js';
-import { BONSAI_NOT_FOUND } from './consts/bonsai.constants.js';
 import { CreateBonsaiDto, EditBonsaiDto } from './dto/index.js';
 
 @Injectable()
@@ -21,7 +21,7 @@ export class BonsaiService {
         where: { id },
       });
     } catch (err) {
-      throw new NotFoundException(BONSAI_NOT_FOUND);
+      throw new NotFoundException(EXCEPTION_MSGS.BONSAI_NOT_FOUND);
     }
   }
 

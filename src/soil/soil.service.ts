@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { EXCEPTION_MSGS } from '../common/consts/common.consts.js';
 import { Soil } from '../typeorm/entities/index.js';
-import { SOIL_NOT_FOUND } from './consts/soil.constants.js';
 import { CreateSoilDto, EditSoilDto } from './dto/index.js';
 
 @Injectable()
@@ -22,7 +22,7 @@ export class SoilService {
         where: { id },
       });
     } catch (err) {
-      throw new NotFoundException(SOIL_NOT_FOUND);
+      throw new NotFoundException(EXCEPTION_MSGS.SOIL_NOT_FOUND);
     }
   }
 

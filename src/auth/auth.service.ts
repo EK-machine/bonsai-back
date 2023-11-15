@@ -4,8 +4,11 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
-import { EXCEPTION_MSGS, SUCCESS } from '../common/consts/common.consts.js';
-import { A_SECRET, R_SECRET } from '../common/envconsts/env.consts.js';
+import {
+  ENV_CONSTS,
+  EXCEPTION_MSGS,
+  SUCCESS,
+} from '../common/consts/common.consts.js';
 import { RT, User } from '../typeorm/entities/index.js';
 import { JwtPayload, Tokens } from '../utils/types.js';
 import { AuthDto } from './dto/Auth.dto.js';
@@ -85,7 +88,7 @@ export class AuthService {
 
   async verifyRT(cookie: string) {
     const data = await this.jwtService.verifyAsync(cookie, {
-      secret: this.configService.get(R_SECRET),
+      secret: this.configService.get(ENV_CONSTS.R_SECRET),
     });
     return data;
   }
@@ -125,11 +128,11 @@ export class AuthService {
 
     const [at, rt] = await Promise.all([
       this.jwtService.signAsync(jwtPayload, {
-        secret: this.configService.get(A_SECRET),
+        secret: this.configService.get(ENV_CONSTS.A_SECRET),
         expiresIn: 60 * 15,
       }),
       this.jwtService.signAsync(jwtPayload, {
-        secret: this.configService.get(R_SECRET),
+        secret: this.configService.get(ENV_CONSTS.R_SECRET),
         expiresIn: 60 * 60 * 24 * 7,
       }),
     ]);

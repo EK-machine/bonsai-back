@@ -48,7 +48,8 @@ export const VALIDATION_MSGS = {
 
 export const EXCEPTION_MSGS = {
   ARTICLE_NOT_FOUND: 'Нет статьи, которую вы ищите',
-  USER_EXISTS: 'Пользователь уже существует',
+  USER_EXISTS: 'Администратор уже существует',
+  USER_ONLY: 'В системе уже зарегистрирован администратор',
   INVALID_CREDENTIALS: 'Недействительные учетные данные',
   SOMETHING_WENT_WRONG: 'Что-то пошло не так',
   RT_MALFORMED: 'refresh token деформирован',

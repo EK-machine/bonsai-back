@@ -31,6 +31,15 @@ export class AuthService {
       throw new ForbiddenException(EXCEPTION_MSGS.USER_EXISTS);
     }
 
+    const { count } = await this.userRepository
+      .createQueryBuilder('users')
+      .select('Count(users.id)', 'count')
+      .getRawOne();
+
+    if (+count > 1) {
+      throw new ForbiddenException(EXCEPTION_MSGS.USER_ONLY);
+    }
+
     const hashedPassword = await this.hashDada(dto.password);
     const newUser = await this.userRepository.save({
       ...dto,

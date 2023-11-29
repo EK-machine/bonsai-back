@@ -36,7 +36,7 @@ export class AuthService {
       .select('Count(users.id)', 'count')
       .getRawOne();
 
-    if (+count > 1) {
+    if (+count >= 1) {
       throw new ForbiddenException(EXCEPTION_MSGS.USER_ONLY);
     }
 

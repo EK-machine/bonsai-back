@@ -21,7 +21,7 @@ export class Bonsai {
   @Column({ nullable: true })
   descr: string;
 
-  @Column({ nullable: true })
+  @Column()
   img_path_1: string;
 
   @Column({ nullable: true })

@@ -12,5 +12,5 @@ export class EditArticleDto {
 
   @IsOptional()
   @IsString({ message: VALIDATION_MSGS.IMG_IS_STRING })
-  img_path: string;
+  img_path_1: string;
 }

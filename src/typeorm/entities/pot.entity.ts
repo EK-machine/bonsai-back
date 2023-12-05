@@ -31,7 +31,7 @@ export class Pot {
   descr: string;
 
   @Column()
-  img_path: string;
+  img_path_1: string;
 
   @Column({ default: false })
   in_stock: boolean;

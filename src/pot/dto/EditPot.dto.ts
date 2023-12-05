@@ -45,7 +45,7 @@ export class EditPotDto {
 
   @IsOptional()
   @IsString({ message: VALIDATION_MSGS.IMG_IS_STRING })
-  img_path: string;
+  img_path_1: string;
 
   @IsOptional()
   @IsBoolean({ message: VALIDATION_MSGS.STOCK_IS_BOOL })

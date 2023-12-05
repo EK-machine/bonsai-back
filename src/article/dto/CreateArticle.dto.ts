@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 import { VALIDATION_MSGS } from '../../common/consts/common.consts.js';
 
 export class CreateArticleDto {
@@ -10,7 +10,7 @@ export class CreateArticleDto {
   @IsString({ message: VALIDATION_MSGS.ARTICLE_TEXT_IS_STRING })
   text: string | null;
 
-  @IsOptional()
+  @IsNotEmpty({ message: VALIDATION_MSGS.IMG_NOT_EMPTY })
   @IsString({ message: VALIDATION_MSGS.IMG_IS_STRING })
-  img_path: string | null;
+  img_path_1: string;
 }

@@ -22,5 +22,5 @@ export class Service {
   descr: string;
 
   @Column()
-  img_path: string;
+  img_path_1: string;
 }

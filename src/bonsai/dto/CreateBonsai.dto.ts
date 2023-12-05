@@ -26,9 +26,9 @@ export class CreateBonsaiDto {
   @IsString({ message: VALIDATION_MSGS.BONSAI_DESCR_IS_STRING })
   descr: string | null;
 
-  @IsOptional()
+  @IsNotEmpty({ message: VALIDATION_MSGS.IMG_NOT_EMPTY })
   @IsString({ message: VALIDATION_MSGS.IMG_IS_STRING })
-  img_path_1: string | null;
+  img_path_1: string;
 
   @IsOptional()
   @IsString({ message: VALIDATION_MSGS.IMG_IS_STRING })

@@ -28,5 +28,5 @@ export class CreateServiceDto {
 
   @IsNotEmpty({ message: VALIDATION_MSGS.IMG_NOT_EMPTY })
   @IsString({ message: VALIDATION_MSGS.IMG_IS_STRING })
-  img_path: string;
+  img_path_1: string;
 }

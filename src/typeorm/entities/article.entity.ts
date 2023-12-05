@@ -11,6 +11,6 @@ export class Article {
   @Column()
   text: string;
 
-  @Column({ nullable: true })
-  img_path: string;
+  @Column()
+  img_path_1: string;
 }

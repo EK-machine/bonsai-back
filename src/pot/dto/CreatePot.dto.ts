@@ -44,9 +44,9 @@ export class CreatePotDto {
   @IsString({ message: VALIDATION_MSGS.POT_DESCR_IS_STRING })
   descr: string | null;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: VALIDATION_MSGS.IMG_NOT_EMPTY })
   @IsString({ message: VALIDATION_MSGS.IMG_IS_STRING })
-  img_path: string;
+  img_path_1: string;
 
   @IsNotEmpty({ message: VALIDATION_MSGS.STOCK_NOT_EMPTY })
   @IsBoolean({ message: VALIDATION_MSGS.STOCK_IS_BOOL })

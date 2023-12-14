@@ -6,8 +6,10 @@ import { PICS_FIELDS, PICS_STORE_PATH } from '../consts/index';
 import {
   CreateArticleBodyDto,
   CreateBonsaBodyDto,
+  CreateInstrumentBodyDto,
   EditArticleBodyDto,
   EditBonsaiBodyDto,
+  EditInstrumentBodyDto,
 } from '../dtos/index';
 
 export const transformDtoAndStorePics = <T>(
@@ -15,7 +17,9 @@ export const transformDtoAndStorePics = <T>(
     | CreateArticleBodyDto
     | EditArticleBodyDto
     | CreateBonsaBodyDto
-    | EditBonsaiBodyDto,
+    | EditBonsaiBodyDto
+    | CreateInstrumentBodyDto
+    | EditInstrumentBodyDto,
   storageDirPath: string,
 ): T => {
   const pics = Object.entries(dto)

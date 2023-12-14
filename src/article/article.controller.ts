@@ -11,11 +11,12 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { EXCEPTION_MSGS } from '../common/consts/common.consts.js';
-import { AtPublic, RtPublic } from '../common/decorators/index.js';
-import { AtGuard, RtGuard } from '../common/guards/index.js';
+import { FormDataRequest } from 'nestjs-form-data';
+import { EXCEPTION_MSGS } from '../common/consts/index';
+import { AtPublic, RtPublic } from '../common/decorators/index';
+import { CreateArticleBodyDto, EditArticleBodyDto } from '../common/dtos/index';
+import { AtGuard, RtGuard } from '../common/guards/index';
 import { ArticleService } from './article.service.js';
-import { CreateArticleDto, EditArticleDto } from './dto/index.js';
 
 @Controller('article')
 @UseGuards(RtGuard, AtGuard)
@@ -44,8 +45,9 @@ export class ArticleController {
 
   @Post('create')
   @HttpCode(HttpStatus.CREATED)
-  async createArticle(@Body() createArticleDto: CreateArticleDto) {
-    return await this.articleService.createArticle(createArticleDto);
+  @FormDataRequest()
+  async createArticle(@Body() createArticleBodyDto: CreateArticleBodyDto) {
+    return await this.articleService.createArticle(createArticleBodyDto);
   }
 
   @Delete('delete/:id')
@@ -56,10 +58,11 @@ export class ArticleController {
 
   @Patch('edit/:id')
   @HttpCode(HttpStatus.OK)
+  @FormDataRequest()
   async editById(
     @Param('id') id: string,
-    @Body() editArticleDto: EditArticleDto,
+    @Body() editArticleBodyDto: EditArticleBodyDto,
   ) {
-    return await this.articleService.editById(+id, editArticleDto);
+    return await this.articleService.editById(+id, editArticleBodyDto);
   }
 }

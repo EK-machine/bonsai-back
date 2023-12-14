@@ -87,8 +87,8 @@ export const ENV_CONSTS = {
 
 export const MAX_FILE_SIZE = 5242880;
 
-// export const FILE_EXTENSIONS = ['jpg', 'jpeg', 'png'];
-
 export const PICS_FIELDS = ['img_path_1', 'img_path_2', 'img_path_3'];
 
 export const PICS_STORE_PATH = '../../../../../bonsai-pics/';
+
+export const PICS_DEL_PATH = '../../../../bonsai-pics/';

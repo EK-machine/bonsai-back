@@ -8,10 +8,12 @@ import {
   CreateBonsaBodyDto,
   CreateInstrumentBodyDto,
   CreatePotBodyDto,
+  CreateServiceBodyDto,
   EditArticleBodyDto,
   EditBonsaiBodyDto,
   EditInstrumentBodyDto,
   EditPotBodyDto,
+  EditServiceBodyDto,
 } from '../dtos/index';
 
 export const transformDtoAndStorePics = <T>(
@@ -23,7 +25,9 @@ export const transformDtoAndStorePics = <T>(
     | CreateInstrumentBodyDto
     | EditInstrumentBodyDto
     | CreatePotBodyDto
-    | EditPotBodyDto,
+    | EditPotBodyDto
+    | CreateServiceBodyDto
+    | EditServiceBodyDto,
   storageDirPath: string,
 ): T => {
   const pics = Object.entries(dto)

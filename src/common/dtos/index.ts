@@ -8,6 +8,7 @@ export * from './CreateInstrumentBody.dto.js';
 export * from './CreatePot.dto.js';
 export * from './CreatePotBody.dto.js';
 export * from './CreateService.dto.js';
+export * from './CreateServiceBody.dto.js';
 export * from './CreateSoil.dto.js';
 export * from './EditArticle.dto.js';
 export * from './EditArticleBody.dto.js';
@@ -18,5 +19,6 @@ export * from './EditInstrumentBody.dto.js';
 export * from './EditPot.dto.js';
 export * from './EditPotBody.dto.js';
 export * from './EditService.dto.js';
+export * from './EditServiceBody.dto.js';
 export * from './EditSoil.dto.js';
 

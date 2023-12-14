@@ -11,9 +11,10 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { FormDataRequest } from 'nestjs-form-data';
 import { EXCEPTION_MSGS } from '../common/consts/index';
 import { AtPublic, RtPublic } from '../common/decorators/index';
-import { CreateServiceDto, EditServiceDto } from '../common/dtos/index';
+import { CreateServiceBodyDto, EditServiceBodyDto } from '../common/dtos/index';
 import { AtGuard, RtGuard } from '../common/guards/index';
 import { ServiceService } from './service.service.js';
 
@@ -43,9 +44,10 @@ export class ServiceController {
   }
 
   @Post('create')
+  @FormDataRequest()
   @HttpCode(HttpStatus.CREATED)
-  async createService(@Body() createServiceDto: CreateServiceDto) {
-    return await this.serviceService.createService(createServiceDto);
+  async createService(@Body() createServiceBodyDto: CreateServiceBodyDto) {
+    return await this.serviceService.createService(createServiceBodyDto);
   }
 
   @Delete('delete/:id')
@@ -55,11 +57,12 @@ export class ServiceController {
   }
 
   @Patch('edit/:id')
+  @FormDataRequest()
   @HttpCode(HttpStatus.OK)
   async editById(
     @Param('id') id: string,
-    @Body() editServiceDto: EditServiceDto,
+    @Body() editServiceBodyDto: EditServiceBodyDto,
   ) {
-    return await this.serviceService.editById(+id, editServiceDto);
+    return await this.serviceService.editById(+id, editServiceBodyDto);
   }
 }

@@ -1,9 +1,18 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { PICS_DEL_PATH, PICS_FIELDS } from '../consts/index';
-import { Article } from '../typeorm-entities/index';
+import {
+  Article,
+  Bonsai,
+  Instrument,
+  Pot,
+  Service,
+  Soil,
+} from '../typeorm-entities/index';
 
-export const deletePics = async (entity: Article) => {
+export const deletePics = async (
+  entity: Article | Bonsai | Instrument | Pot | Soil | Service,
+) => {
   const pics = Object.entries(entity)
     .filter((el) => {
       return PICS_FIELDS.some((e) => e === el[0]);

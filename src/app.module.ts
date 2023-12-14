@@ -5,7 +5,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ArticleModule } from './article/article.module';
 import { AuthModule } from './auth/auth.module';
-import { BonsaiController } from './bonsai/bonsai.controller';
 import { BonsaiModule } from './bonsai/bonsai.module';
 import {
   Article,
@@ -45,7 +44,7 @@ import { SoilModule } from './soil/soil.module';
     InstrumentsModule,
     SoilModule,
   ],
-  controllers: [AppController, BonsaiController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}

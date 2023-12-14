@@ -44,8 +44,8 @@ export class ArticleController {
   }
 
   @Post('create')
-  @HttpCode(HttpStatus.CREATED)
   @FormDataRequest()
+  @HttpCode(HttpStatus.CREATED)
   async createArticle(@Body() createArticleBodyDto: CreateArticleBodyDto) {
     return await this.articleService.createArticle(createArticleBodyDto);
   }
@@ -57,8 +57,8 @@ export class ArticleController {
   }
 
   @Patch('edit/:id')
-  @HttpCode(HttpStatus.OK)
   @FormDataRequest()
+  @HttpCode(HttpStatus.OK)
   async editById(
     @Param('id') id: string,
     @Body() editArticleBodyDto: EditArticleBodyDto,

@@ -3,10 +3,19 @@ import { FileSystemStoredFile } from 'nestjs-form-data';
 import * as path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 import { PICS_FIELDS, PICS_STORE_PATH } from '../consts/index';
-import { CreateArticleBodyDto, EditArticleBodyDto } from '../dtos/index';
+import {
+  CreateArticleBodyDto,
+  CreateBonsaBodyDto,
+  EditArticleBodyDto,
+  EditBonsaiBodyDto,
+} from '../dtos/index';
 
 export const transformDtoAndStorePics = <T>(
-  dto: CreateArticleBodyDto | EditArticleBodyDto,
+  dto:
+    | CreateArticleBodyDto
+    | EditArticleBodyDto
+    | CreateBonsaBodyDto
+    | EditBonsaiBodyDto,
   storageDirPath: string,
 ): T => {
   const pics = Object.entries(dto)

@@ -11,10 +11,14 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { EXCEPTION_MSGS } from '../common/consts/common.consts.js';
-import { AtPublic, RtPublic } from '../common/decorators/index.js';
-import { AtGuard, RtGuard } from '../common/guards/index.js';
-import { CreateInstrumentDto, EditInstrumentDto } from './dto/index.js';
+import { FormDataRequest } from 'nestjs-form-data';
+import { EXCEPTION_MSGS } from '../common/consts/index';
+import { AtPublic, RtPublic } from '../common/decorators/index';
+import {
+  CreateInstrumentBodyDto,
+  EditInstrumentBodyDto,
+} from '../common/dtos/index';
+import { AtGuard, RtGuard } from '../common/guards/index';
 import { InstrumentService } from './instrument.service.js';
 
 @Controller('related/instrument')
@@ -43,9 +47,14 @@ export class InstrumentController {
   }
 
   @Post('create')
+  @FormDataRequest()
   @HttpCode(HttpStatus.CREATED)
-  async createInstrument(@Body() createInstrument: CreateInstrumentDto) {
-    return await this.instrumentService.createInstrument(createInstrument);
+  async createInstrument(
+    @Body() createInstrumentBodyDto: CreateInstrumentBodyDto,
+  ) {
+    return await this.instrumentService.createInstrument(
+      createInstrumentBodyDto,
+    );
   }
 
   @Delete('delete/:id')
@@ -55,11 +64,12 @@ export class InstrumentController {
   }
 
   @Patch('edit/:id')
+  @FormDataRequest()
   @HttpCode(HttpStatus.OK)
   async editById(
     @Param('id') id: string,
-    @Body() editServiceDto: EditInstrumentDto,
+    @Body() editInstrumentBodyDto: EditInstrumentBodyDto,
   ) {
-    return await this.instrumentService.editById(+id, editServiceDto);
+    return await this.instrumentService.editById(+id, editInstrumentBodyDto);
   }
 }

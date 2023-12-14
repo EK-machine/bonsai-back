@@ -4,14 +4,10 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
-import {
-  ENV_CONSTS,
-  EXCEPTION_MSGS,
-  SUCCESS,
-} from '../common/consts/common.consts.js';
-import { RT, User } from '../typeorm/entities/index.js';
-import { JwtPayload, Tokens } from '../utils/types.js';
-import { AuthDto } from './dto/Auth.dto.js';
+import { ENV_CONSTS, EXCEPTION_MSGS, SUCCESS } from '../common/consts/index';
+import { AuthDto } from '../common/dtos/index';
+import { RT, User } from '../common/typeorm-entities/index';
+import { JwtPayload, Tokens } from '../common/types/index';
 
 @Injectable()
 export class AuthService {

@@ -2,10 +2,13 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { RT, User } from '../typeorm/entities/index.js';
+import {
+  AccessTokenStrategy,
+  RefreshTokenStrategy,
+} from '../common/strategy/index';
+import { RT, User } from '../common/typeorm-entities/index';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { AccessTokenStrategy, RefreshTokenStrategy } from './strategy/index.js';
 
 @Module({
   imports: [

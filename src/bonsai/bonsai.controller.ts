@@ -11,11 +11,12 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { EXCEPTION_MSGS } from '../common/consts/common.consts.js';
-import { AtPublic, RtPublic } from '../common/decorators/index.js';
-import { AtGuard, RtGuard } from '../common/guards/index.js';
+import { FormDataRequest } from 'nestjs-form-data';
+import { EXCEPTION_MSGS } from '../common/consts/index';
+import { AtPublic, RtPublic } from '../common/decorators/index';
+import { CreateBonsaBodyDto, EditBonsaiBodyDto } from '../common/dtos/index';
+import { AtGuard, RtGuard } from '../common/guards/index';
 import { BonsaiService } from './bonsai.service.js';
-import { CreateBonsaiDto, EditBonsaiDto } from './dto/index.js';
 
 @Controller('bonsai')
 @UseGuards(AtGuard, RtGuard)
@@ -43,9 +44,10 @@ export class BonsaiController {
   }
 
   @Post('create')
+  @FormDataRequest()
   @HttpCode(HttpStatus.CREATED)
-  async createBonsai(@Body() createBonsaiDto: CreateBonsaiDto) {
-    return await this.bonsaiService.createBonsai(createBonsaiDto);
+  async createBonsai(@Body() createBonsaBodyDto: CreateBonsaBodyDto) {
+    return await this.bonsaiService.createBonsai(createBonsaBodyDto);
   }
 
   @Delete('delete/:id')
@@ -55,11 +57,12 @@ export class BonsaiController {
   }
 
   @Patch('edit/:id')
+  @FormDataRequest()
   @HttpCode(HttpStatus.OK)
   async editById(
     @Param('id') id: string,
-    @Body() editBonsaiDto: EditBonsaiDto,
+    @Body() editBonsaiBodyDto: EditBonsaiBodyDto,
   ) {
-    return await this.bonsaiService.editById(+id, editBonsaiDto);
+    return await this.bonsaiService.editById(+id, editBonsaiBodyDto);
   }
 }

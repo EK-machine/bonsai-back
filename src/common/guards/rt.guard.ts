@@ -2,7 +2,7 @@ import { ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
-import { DECORATOR_CONSTS, REFRESH_TOKEN } from '../consts/common.consts.js';
+import { DECORATOR_CONSTS, REFRESH_TOKEN } from '../consts/index';
 
 @Injectable()
 export class RtGuard extends AuthGuard('jwt-refresh') {

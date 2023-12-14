@@ -1,9 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { EXCEPTION_MSGS } from '../common/consts/common.consts.js';
-import { Bonsai } from '../typeorm/entities/index.js';
-import { CreateBonsaiDto, EditBonsaiDto } from './dto/index.js';
+import { EXCEPTION_MSGS } from '../common/consts/index';
+import { CreateBonsaiDto, EditBonsaiDto } from '../common/dtos/index';
+import { Bonsai } from '../common/typeorm-entities/index';
 
 @Injectable()
 export class BonsaiService {

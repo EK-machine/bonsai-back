@@ -11,11 +11,11 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { EXCEPTION_MSGS } from '../common/consts/common.consts.js';
-import { AtPublic, RtPublic } from '../common/decorators/index.js';
-import { AtGuard, RtGuard } from '../common/guards/index.js';
+import { EXCEPTION_MSGS } from '../common/consts/index';
+import { AtPublic, RtPublic } from '../common/decorators/index';
+import { CreateBonsaiDto, EditBonsaiDto } from '../common/dtos/index';
+import { AtGuard, RtGuard } from '../common/guards/index';
 import { BonsaiService } from './bonsai.service.js';
-import { CreateBonsaiDto, EditBonsaiDto } from './dto/index.js';
 
 @Controller('bonsai')
 @UseGuards(AtGuard, RtGuard)

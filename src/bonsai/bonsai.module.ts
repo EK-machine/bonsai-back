@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Bonsai } from '../typeorm/entities/index.js';
+import { Bonsai } from '../common/typeorm-entities/index';
 import { BonsaiController } from './bonsai.controller.js';
 import { BonsaiService } from './bonsai.service';
 

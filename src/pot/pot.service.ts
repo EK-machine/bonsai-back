@@ -1,9 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { EXCEPTION_MSGS } from '../common/consts/common.consts.js';
-import { Pot } from '../typeorm/entities/index.js';
-import { CreatePotDto, EditPotDto } from './dto/index.js';
+import { EXCEPTION_MSGS } from '../common/consts/index';
+import { CreatePotDto, EditPotDto } from '../common/dtos/index';
+import { Pot } from '../common/typeorm-entities/index';
 
 @Injectable()
 export class PotService {

@@ -11,10 +11,10 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { EXCEPTION_MSGS } from '../common/consts/common.consts.js';
-import { AtPublic, RtPublic } from '../common/decorators/index.js';
-import { AtGuard, RtGuard } from '../common/guards/index.js';
-import { CreateInstrumentDto, EditInstrumentDto } from './dto/index.js';
+import { EXCEPTION_MSGS } from '../common/consts/index';
+import { AtPublic, RtPublic } from '../common/decorators/index';
+import { CreateInstrumentDto, EditInstrumentDto } from '../common/dtos/index';
+import { AtGuard, RtGuard } from '../common/guards/index';
 import { InstrumentService } from './instrument.service.js';
 
 @Controller('related/instrument')

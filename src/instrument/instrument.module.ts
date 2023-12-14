@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Instrument } from '../typeorm/entities/instrument.entity.js';
+import { Instrument } from '../common/typeorm-entities/index';
 import { InstrumentController } from './instrument.controller';
 import { InstrumentService } from './instrument.service';
 

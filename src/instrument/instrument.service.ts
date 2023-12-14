@@ -1,9 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { EXCEPTION_MSGS } from '../common/consts/common.consts.js';
-import { Instrument } from '../typeorm/entities/index.js';
-import { CreateInstrumentDto, EditInstrumentDto } from './dto/index.js';
+import { EXCEPTION_MSGS } from '../common/consts/index';
+import { CreateInstrumentDto, EditInstrumentDto } from '../common/dtos/index';
+import { Instrument } from '../common/typeorm-entities/index';
 
 @Injectable()
 export class InstrumentService {

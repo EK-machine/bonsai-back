@@ -9,19 +9,16 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { Response } from 'express';
-import {
-  EXCEPTION_MSGS,
-  REFRESH_TOKEN,
-} from '../common/consts/common.consts.js';
+import { EXCEPTION_MSGS, REFRESH_TOKEN } from '../common/consts/index';
 import {
   AtPublic,
   GetCurrenUser,
   GetRefreshToken,
   RtPublic,
-} from '../common/decorators/index.js';
-import { AtGuard, RtGuard } from '../common/guards/index.js';
+} from '../common/decorators/index';
+import { AuthDto } from '../common/dtos/index';
+import { AtGuard, RtGuard } from '../common/guards/index';
 import { AuthService } from './auth.service.js';
-import { AuthDto } from './dto/Auth.dto.js';
 
 @Controller('auth')
 @UseGuards(AtGuard, RtGuard)

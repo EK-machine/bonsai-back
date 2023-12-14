@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Pot } from '../typeorm/entities/pot.entity.js';
+import { Pot } from '../common/typeorm-entities/index';
 import { PotController } from './pot.controller';
 import { PotService } from './pot.service';
 

@@ -7,10 +7,6 @@ import { ArticleModule } from './article/article.module';
 import { AuthModule } from './auth/auth.module';
 import { BonsaiController } from './bonsai/bonsai.controller';
 import { BonsaiModule } from './bonsai/bonsai.module';
-import { InstrumentsModule } from './instrument/instrument.module';
-import { PotModule } from './pot/pot.module';
-import { ServiceModule } from './service/service.module';
-import { SoilModule } from './soil/soil.module';
 import {
   Article,
   Bonsai,
@@ -20,7 +16,11 @@ import {
   Service,
   Soil,
   User,
-} from './typeorm/entities/index.js';
+} from './common/typeorm-entities/index';
+import { InstrumentsModule } from './instrument/instrument.module';
+import { PotModule } from './pot/pot.module';
+import { ServiceModule } from './service/service.module';
+import { SoilModule } from './soil/soil.module';
 
 @Module({
   imports: [

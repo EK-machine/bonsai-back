@@ -11,9 +11,10 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { FormDataRequest } from 'nestjs-form-data';
 import { EXCEPTION_MSGS } from '../common/consts/index';
 import { AtPublic, RtPublic } from '../common/decorators/index';
-import { CreatePotDto, EditPotDto } from '../common/dtos/index';
+import { CreatePotBodyDto, EditPotBodyDto } from '../common/dtos/index';
 import { AtGuard, RtGuard } from '../common/guards/index';
 import { PotService } from './pot.service.js';
 
@@ -43,9 +44,10 @@ export class PotController {
   }
 
   @Post('create')
+  @FormDataRequest()
   @HttpCode(HttpStatus.CREATED)
-  async createPot(@Body() createPotDto: CreatePotDto) {
-    return await this.potService.createPot(createPotDto);
+  async createPot(@Body() createPotBodyDto: CreatePotBodyDto) {
+    return await this.potService.createPot(createPotBodyDto);
   }
 
   @Delete('delete/:id')
@@ -55,8 +57,12 @@ export class PotController {
   }
 
   @Patch('edit/:id')
+  @FormDataRequest()
   @HttpCode(HttpStatus.OK)
-  async editById(@Param('id') id: string, @Body() editPotDto: EditPotDto) {
-    return await this.potService.editById(+id, editPotDto);
+  async editById(
+    @Param('id') id: string,
+    @Body() editPotBodyDto: EditPotBodyDto,
+  ) {
+    return await this.potService.editById(+id, editPotBodyDto);
   }
 }

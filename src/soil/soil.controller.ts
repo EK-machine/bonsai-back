@@ -11,9 +11,10 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { FormDataRequest } from 'nestjs-form-data';
 import { EXCEPTION_MSGS } from '../common/consts/index';
 import { AtPublic, RtPublic } from '../common/decorators/index';
-import { CreateSoilDto, EditSoilDto } from '../common/dtos/index';
+import { CreateSoilBodyDto, EditSoilBodyDto } from '../common/dtos/index';
 import { AtGuard, RtGuard } from '../common/guards/index';
 import { SoilService } from './soil.service.js';
 
@@ -43,9 +44,10 @@ export class SoilController {
   }
 
   @Post('create')
+  @FormDataRequest()
   @HttpCode(HttpStatus.CREATED)
-  async createSoil(@Body() createSoil: CreateSoilDto) {
-    return await this.soilService.createSoil(createSoil);
+  async createSoil(@Body() createSoilBodyDto: CreateSoilBodyDto) {
+    return await this.soilService.createSoil(createSoilBodyDto);
   }
 
   @Delete('delete/:id')
@@ -55,8 +57,12 @@ export class SoilController {
   }
 
   @Patch('edit/:id')
+  @FormDataRequest()
   @HttpCode(HttpStatus.OK)
-  async editById(@Param('id') id: string, @Body() editSoilDto: EditSoilDto) {
-    return await this.soilService.editById(+id, editSoilDto);
+  async editById(
+    @Param('id') id: string,
+    @Body() editSoilBodyDto: EditSoilBodyDto,
+  ) {
+    return await this.soilService.editById(+id, editSoilBodyDto);
   }
 }

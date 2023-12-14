@@ -10,6 +10,7 @@ export * from './CreatePotBody.dto.js';
 export * from './CreateService.dto.js';
 export * from './CreateServiceBody.dto.js';
 export * from './CreateSoil.dto.js';
+export * from './CreateSoilBody.dto.js';
 export * from './EditArticle.dto.js';
 export * from './EditArticleBody.dto.js';
 export * from './EditBonsai.dto.js';
@@ -21,4 +22,5 @@ export * from './EditPotBody.dto.js';
 export * from './EditService.dto.js';
 export * from './EditServiceBody.dto.js';
 export * from './EditSoil.dto.js';
+export * from './EditSoilBody.dto.js';
 

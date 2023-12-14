@@ -1,9 +1,16 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import * as path from 'path';
 import { Repository } from 'typeorm';
 import { EXCEPTION_MSGS } from '../common/consts/index';
-import { CreateSoilDto, EditSoilDto } from '../common/dtos/index';
+import {
+  CreateSoilBodyDto,
+  CreateSoilDto,
+  EditSoilBodyDto,
+  EditSoilDto,
+} from '../common/dtos/index';
 import { Soil } from '../common/typeorm-entities/index';
+import { deletePics, transformDtoAndStorePics } from '../common/utils/index';
 
 @Injectable()
 export class SoilService {
@@ -26,21 +33,39 @@ export class SoilService {
     }
   }
 
-  async createSoil(createSoil: CreateSoilDto): Promise<Soil> {
+  async createSoil(createSoilBodyDto: CreateSoilBodyDto): Promise<Soil> {
+    const storageDirPath = path.resolve(__dirname, '../../../bonsai-pics');
+    const createSoilDto = transformDtoAndStorePics<CreateSoilDto>(
+      createSoilBodyDto,
+      storageDirPath,
+    );
     const newSoil = this.soilRepository.create({
-      ...createSoil,
+      ...createSoilDto,
     });
     return this.soilRepository.save(newSoil);
   }
 
   async deleteById(id: number): Promise<Soil> {
     const soilToDel = await this.getSoilById(id);
+    if (soilToDel.img_path_1) {
+      await deletePics(soilToDel);
+    }
     return await this.soilRepository.remove(soilToDel);
   }
 
-  async editById(id: number, editBody: EditSoilDto): Promise<Soil> {
-    let soilToUpdate = await this.getSoilById(id);
-    soilToUpdate = { ...soilToUpdate, ...editBody };
-    return this.soilRepository.save(soilToUpdate);
+  async editById(id: number, editSoilBodyDto: EditSoilBodyDto): Promise<Soil> {
+    const storageDirPath = path.resolve(__dirname, '../../../bonsai-pics');
+    const editSoilDto = transformDtoAndStorePics<EditSoilDto>(
+      editSoilBodyDto,
+      storageDirPath,
+    );
+
+    let soilToEdit = await this.getSoilById(id);
+    if (soilToEdit.img_path_1) {
+      await deletePics(soilToEdit);
+    }
+
+    soilToEdit = { ...soilToEdit, ...editSoilDto };
+    return this.soilRepository.save(soilToEdit);
   }
 }
